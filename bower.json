@@ -1,0 +1,26 @@
+{
+  "name": "ngPouch",
+  "version": "0.0.1",
+  "authors": [
+    "jrhicks <jrhicks@gmail.com>"
+  ],
+  "description": "Angular service to persist remote connection settings and maintain continuous replication",
+  "main": "ngPouch.js",
+  "keywords": [
+    "pouchdb",
+    "angularjs"
+  ],
+  "license": "MIT",
+  "homepage": "http://github.com/jrhicks",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    ".idea"
+  ],
+  "dependencies": {
+    "pouchdb": "~3.0.6"
+  }
+}
