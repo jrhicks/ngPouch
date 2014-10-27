@@ -1,14 +1,19 @@
 'use strict';
 
-angular.module('app.todo', [])
-  .service('Todo', function(ngPouch, rfc4122, $rootScope) {
+angular.module('app.todo', ['ngPouch','uuid'])
+  .service('Todo', function(rfc4122, ngPouch, $rootScope) {
 
     return {
+
+      update: function(obj) {
+        ngPouch.db.put(obj.doc);
+      },
+
       add: function(obj) {
         obj._id = 'todo_'+rfc4122.v4();
         obj.doc_type = 'todo';
         obj.created_at = new Date();
-        return Pouch.db.put(obj);
+        return ngPouch.db.put(obj);
       },
 
       all: function() {
