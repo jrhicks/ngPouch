@@ -1,5 +1,5 @@
 {
-  "name": "ngPouch",
+  "name": "ng-pouch",
   "version": "0.0.1",
   "authors": [
     "jrhicks <jrhicks@gmail.com>"
@@ -11,14 +11,15 @@
     "angularjs"
   ],
   "license": "MIT",
-  "homepage": "http://github.com/jrhicks",
+  "homepage": "https://github.com/jrhicks/ngPouch",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
     "tests",
-    ".idea"
+    ".idea",
+    "npm-debug.log"
   ],
   "dependencies": {
     "pouchdb": "~3.0.6"

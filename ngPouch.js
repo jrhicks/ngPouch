@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('app.pouch_replication_service', [])
-    .service('PouchReplicationService', function($timeout, $localStorage) {
+angular.module('app.ngPouch', [])
+    .service('ngPouch', function($timeout, $localStorage) {
 
         var service =  {
             // Databases
