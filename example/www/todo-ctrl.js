@@ -3,6 +3,8 @@ angular.module('app.todoCtrl', ['ngPouch'])
 
     $scope.form = {};
     $scope.todos = [];
+    $scope.logged_in = false;
+    $scope.ng_pouch = ngPouch;
 
     ngPouch.publish(function() {
       return Todo.all()
@@ -27,5 +29,35 @@ angular.module('app.todoCtrl', ['ngPouch'])
       });
       return count;
     };
+
+    $scope.login = function() {
+      ngPouch.saveSettings({database:'http://localhost:5984/test1',
+        stayConnected: true });
+      $scope.logged_in = true;
+
+    };
+
+    $scope.logoff = function() {
+      ngPouch.saveSettings({database:'http://localhost:5984/test1',
+        stayConnected: false });
+      if( typeof ngPouch.remotedb != "undefined") {
+        ngPouch.remotedb.logoff();
+      }
+      $scope.logged_in = false;
+      $scope.apply();
+    };
+
+
+    $scope.archive = function() {
+      angular.forEach($scope.todos, function(todo) {
+        Todo.destroy(todo);
+      });
+    };
+
+    if( typeof ngPouch.remotedb != "undefined") {
+      ngPouch.remotedb.logoff();
+    }
+    $scope.logged_in = false;
+
 
   }]);

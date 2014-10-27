@@ -15,9 +15,11 @@
 </head>
 
 
-<h2>Todo</h2>
+
 <div ng-controller="TodoController">
-  <span>{{remaining()}} of {{todos.length}} remaining</span>
+  <h2>Todo </h2>
+
+    <span>{{remaining()}} of {{todos.length}} remaining -  [ <a href="" ng-click="archive()">archive</a> ] </span>
 
   <ul class="unstyled">
     <li ng-repeat="todo in todos">
@@ -31,5 +33,15 @@
            placeholder="add new todo here">
     <input class="btn-primary" type="submit" value="add">
   </form>
+
+  <hr>
+  <div ng-if="logged_in">
+    <input type="button" value="Log off" ng-click="logoff()"> - {{ng_pouch.statusTitle()}}
+  </div>
+
+  <div ng-if="!logged_in">
+    <input type="button" value="Log In" ng-click="login()"> - {{ng_pouch.statusTitle()}}
+  </div>
+
 
 </html>

@@ -8,8 +8,15 @@ Install
 
 * bower install ng-pouch --save
 
-Testing
+View Demo
 -------------
+
+* http://screencast.com/t/9FVbsSDs
+
+Run Demo
+---------------
+
+Linux or Mac required to run pouchdb-server.
 
 * git clone git@github.com:jrhicks/ngPouch.git
 
@@ -20,6 +27,8 @@ Testing
 * npm install
 
 * npm run db
+
+* node app.js
 
 
 LICENSE

@@ -5,6 +5,10 @@ angular.module('app.todo', ['ngPouch','uuid'])
 
     return {
 
+      destroy: function(obj) {
+        ngPouch.db.remove(obj.doc);
+      },
+
       update: function(obj) {
         ngPouch.db.put(obj.doc);
       },

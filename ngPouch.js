@@ -186,7 +186,7 @@ angular.module('ngPouch', ['angularLocalStorage'])
       },
 
       saveSettings: function(settings) {
-        this.db.logout();
+        //this.db.logout();
         this.settings = settings;
         storage.pouchSettings = this.getSettings();
         this.initRobustSync(1000);
