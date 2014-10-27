@@ -6,7 +6,7 @@ Angular service to persist remote connection settings and maintain continuous re
 Install
 ------------
 
-* bower install ngPouch --save
+* bower install ng-pouch --save
 
 Getting Started
 ------------
