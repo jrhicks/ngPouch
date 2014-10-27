@@ -23,6 +23,7 @@
   ],
   "dependencies": {
     "pouchdb": "~3.0.6",
-    "ngStorage": "~0.1.8"
+    "ngStorage": "~0.1.8",
+    "angular-uuid-service": "~0.0.1"
   }
 }
