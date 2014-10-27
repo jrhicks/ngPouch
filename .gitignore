@@ -7,3 +7,7 @@ platforms/
 plugins/
 bower_components/
 npm-debug.log
+example/npm-debug.log
+example/node_modules
+example/bower_components
+
