@@ -24,7 +24,7 @@
   <ul class="unstyled">
     <li ng-repeat="todo in todos">
       <input type="checkbox" ng-model="todo.doc.done" ng-click="updateTodo(todo)">
-      <span class="done-{{todo.doc.done}}">{{todo.doc.text}}</span>
+      <span class="done-{{todo.doc.done}}"> {{todo.doc.text}}</span>
     </li>
   </ul>
 

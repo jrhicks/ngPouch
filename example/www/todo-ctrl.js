@@ -31,20 +31,15 @@ angular.module('app.todoCtrl', ['ngPouch'])
     };
 
     $scope.login = function() {
-      ngPouch.saveSettings({database:'http://localhost:5984/test1',
+      ngPouch.saveSettings({database:'http://localhost:5984/test3',
         stayConnected: true });
       $scope.logged_in = true;
 
     };
 
     $scope.logoff = function() {
-      ngPouch.saveSettings({database:'http://localhost:5984/test1',
-        stayConnected: false });
-      if( typeof ngPouch.remotedb != "undefined") {
-        ngPouch.remotedb.logoff();
-      }
+      ngPouch.logoff();
       $scope.logged_in = false;
-      $scope.apply();
     };
 
 

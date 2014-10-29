@@ -451,6 +451,18 @@ angular.module('ngPouch', ['angularLocalStorage'])
 
       },
 
+      logoff: function() {
+        var self = this;
+        self.settings['stayConnected']=false;
+        storage.pouchSettings = this.getSettings();
+
+        // Throwing the kitchen sync to break the live sync
+        self.cancelProgressiveRetry();
+        self.disconnect();
+        self.remotedb = nil;
+        self.createRemoteDb();
+      },
+
       // Connect to Remote Database and Start Replication
       connect: function() {
         var self = this;
