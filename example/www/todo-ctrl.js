@@ -1,5 +1,6 @@
 angular.module('app.todoCtrl', ['ngPouch'])
-  .controller('TodoController', ['$scope', 'ngPouch','Todo', function($scope, ngPouch, Todo) {
+  .controller('TodoController', ['$scope', 'ngPouch','Todo', 'PouchConflict',
+    function($scope, ngPouch, Todo, PouchConflict) {
 
     $scope.form = {};
     $scope.todos = [];
@@ -7,10 +8,20 @@ angular.module('app.todoCtrl', ['ngPouch'])
     $scope.ng_pouch = ngPouch;
 
     ngPouch.publish(function() {
-      return Todo.all()
+
+      var p1 = Todo.all()
         .then( function(results) {
           $scope.todos = results["rows"];
         });
+
+      var p2 = PouchConflict.all()
+        .then ( function(results) {
+          $scope.conflicts = results["rows"];
+        });
+
+      // TODO combine promises
+      return p1;
+
     });
 
     $scope.updateTodo = function (todo) {
@@ -26,6 +37,14 @@ angular.module('app.todoCtrl', ['ngPouch'])
       var count = 0;
       angular.forEach($scope.todos, function(todo) {
         count += todo.doc.done ? 0 : 1;
+      });
+      return count;
+    };
+
+    $scope.conflicts = function() {
+      var count = 0;
+      angular.forEach($scope.conflicts, function(todo) {
+        count += 1;
       });
       return count;
     };
@@ -48,11 +67,5 @@ angular.module('app.todoCtrl', ['ngPouch'])
         Todo.destroy(todo);
       });
     };
-
-    //if( typeof ngPouch.remotedb != "undefined") {
-    //  ngPouch.remotedb.logoff();
-    //}
-    //$scope.logged_in = false;
-
 
   }]);

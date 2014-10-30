@@ -7,6 +7,7 @@
   <script src="/ngStorage/src/angularLocalStorage.js"></script>
   <script src="/ng-pouch/ngPouch.js"></script>
 
+  <script src="pouch_conflict.js"></script>
   <script src="todo.js"></script>
   <script src="todo-ctrl.js"></script>
   <script src="app.js"></script>
@@ -42,6 +43,11 @@
   <div ng-if="!logged_in">
     <input type="button" value="Log In" ng-click="login()"> - {{ng_pouch.statusTitle()}}
   </div>
+
+  <br>
+  {{conflicts()}} Conflicts
+  <br>
+  {{ng_pouch.status.localChanges}} Local Changes
 
 
 </html>
