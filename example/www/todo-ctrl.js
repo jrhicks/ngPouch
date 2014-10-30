@@ -40,7 +40,7 @@ angular.module('app.todoCtrl', ['ngPouch'])
     };
 
     $scope.login = function() {
-      ngPouch.saveSettings({database:'http://localhost:5984/test19',
+      ngPouch.saveSettings({database:'http://localhost:5984/test20',
         stayConnected: true });
       $scope.logged_in = true;
 
