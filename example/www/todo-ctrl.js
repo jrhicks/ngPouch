@@ -1,14 +1,14 @@
 angular.module('app.todoCtrl', ['ngPouch'])
-  .controller('TodoController', ['$scope', 'ngPouch','Todo', 'PouchConflict',
-    function($scope, ngPouch, Todo, PouchConflict) {
+  .controller('TodoController', ['$scope', '$q', 'ngPouch','Todo', 'PouchConflict',
+    function($scope, $q, ngPouch, Todo, PouchConflict) {
 
     $scope.form = {};
     $scope.todos = [];
     $scope.logged_in = false;
     $scope.ng_pouch = ngPouch;
+    //ngPouch.reset();
 
     ngPouch.publish(function() {
-
       var p1 = Todo.all()
         .then( function(results) {
           $scope.todos = results["rows"];
@@ -16,12 +16,10 @@ angular.module('app.todoCtrl', ['ngPouch'])
 
       var p2 = PouchConflict.all()
         .then ( function(results) {
-          $scope.conflicts = results["rows"];
+          $scope.conflicts = results;
+
         });
-
-      // TODO combine promises
-      return p1;
-
+      return $q.all([p1,p2]);
     });
 
     $scope.updateTodo = function (todo) {
@@ -41,16 +39,8 @@ angular.module('app.todoCtrl', ['ngPouch'])
       return count;
     };
 
-    $scope.conflicts = function() {
-      var count = 0;
-      angular.forEach($scope.conflicts, function(todo) {
-        count += 1;
-      });
-      return count;
-    };
-
     $scope.login = function() {
-      ngPouch.saveSettings({database:'http://localhost:5984/test3',
+      ngPouch.saveSettings({database:'http://localhost:5984/test19',
         stayConnected: true });
       $scope.logged_in = true;
 

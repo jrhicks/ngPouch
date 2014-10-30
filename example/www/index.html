@@ -18,24 +18,33 @@
 
 
 <div ng-controller="TodoController">
-  <h2>Todo </h2>
-
-    <span>{{remaining()}} of {{todos.length}} remaining -  [ <a href="" ng-click="archive()">archive</a> ] </span>
-
-  <ul class="unstyled">
-    <li ng-repeat="todo in todos">
-      <input type="checkbox" ng-model="todo.doc.done" ng-click="updateTodo(todo)">
-      <span class="done-{{todo.doc.done}}"> {{todo.doc.text}}</span>
-    </li>
-  </ul>
+  <h2>Create Todo </h2>
 
   <form ng-submit="addTodo()">
     <input type="text" ng-model="todoText"  size="30"
-           placeholder="add new todo here">
+           placeholder="Task">
     <input class="btn-primary" type="submit" value="add">
   </form>
 
+  <h3>Edit Todos</h3>
+
+  <ul ng-repeat="todo in todos">
+    <li>
+    <input type="checkbox" ng-model="todo.doc.done">
+    <input type="text" ng-model="todo.doc.text">
+    <input type="submit" ng-click="updateTodo(todo)" value="save">
+    </li>
+  </ul>
+
+  <br>
+
   <hr>
+  <h2>Replicate</h2>
+  <p>
+    {{ng_pouch.status.localChanges}} Local Changes
+  </p>
+
+
   <div ng-if="logged_in">
     <input type="button" value="Log off" ng-click="logoff()"> - {{ng_pouch.statusTitle()}}
   </div>
@@ -44,10 +53,12 @@
     <input type="button" value="Log In" ng-click="login()"> - {{ng_pouch.statusTitle()}}
   </div>
 
-  <br>
-  {{conflicts()}} Conflicts
-  <br>
-  {{ng_pouch.status.localChanges}} Local Changes
 
+  <hr>
+  <h2>Conflicts</h2>
+
+<pre>
+{{conflicts | json}}
+</pre>
 
 </html>
