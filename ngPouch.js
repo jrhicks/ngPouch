@@ -428,12 +428,14 @@ angular.module('ngPouch', ['angularLocalStorage'])
       // Disconnect from Remote Database
       disconnect: function() {
         var self = this;
-        if(typeof self.replicationTo === "object") {
-          self.replicationTo.cancel();
+        if(typeof self.session.replicationTo === "object") {
+          console.log("disconnect to");
+          self.session.replicationTo.cancel();
         }
 
-        if(typeof self.replicationFrom === "object") {
-          self.replicationFrom.cancel();
+        if(typeof self.session.replicationFrom === "object") {
+          console.log("disconnect from");
+          self.session.replicationFrom.cancel();
         }
       },
 
@@ -448,19 +450,17 @@ angular.module('ngPouch', ['angularLocalStorage'])
             self.remotedb.login(this.settings.username, this.settings.password, function (err, response) {})
           }
         }
-
       },
 
       logoff: function() {
-        var self = this;
-        self.settings['stayConnected']=false;
+        this.settings['stayConnected']=false;
         storage.pouchSettings = this.getSettings();
 
         // Throwing the kitchen sync to break the live sync
-        self.cancelProgressiveRetry();
-        self.disconnect();
-        self.remotedb = nil;
-        self.createRemoteDb();
+        this.cancelProgressiveRetry();
+        this.disconnect();
+        this.createRemoteDb();
+        this.delaySessionStatus(800, "offline");
       },
 
       // Connect to Remote Database and Start Replication

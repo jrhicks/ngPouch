@@ -22,7 +22,7 @@ Linux or Mac required to run pouchdb-server.
 
 * cd ngPouch
 
-* cd test
+* cd example
 
 * npm install
 

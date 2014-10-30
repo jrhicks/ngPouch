@@ -49,10 +49,10 @@ angular.module('app.todoCtrl', ['ngPouch'])
       });
     };
 
-    if( typeof ngPouch.remotedb != "undefined") {
-      ngPouch.remotedb.logoff();
-    }
-    $scope.logged_in = false;
+    //if( typeof ngPouch.remotedb != "undefined") {
+    //  ngPouch.remotedb.logoff();
+    //}
+    //$scope.logged_in = false;
 
 
   }]);
