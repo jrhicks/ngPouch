@@ -1,7 +1,7 @@
 ngPouch
 =======
 
-PouchDB AngularJS adapter to monitor and manage replication status and 3-way data binding
+[PouchDB](http://pouchdb.com/) AngularJS adapter to monitor and manage replication status and 3-way data binding
 
 Install
 ------------
@@ -11,8 +11,7 @@ Install
 View Demo
 -------------
 
-![Youtube Demo](http://img.youtube.com/vi/k-6SD2b0KOA/0.jpg)](http://www.youtube.com/watch?v=k-6SD2b0KOA)
-
+[![Youtube Demo](http://img.youtube.com/vi/k-6SD2b0KOA/0.jpg)](http://www.youtube.com/watch?v=k-6SD2b0KOA)
 
 Run Demo
 ---------------
