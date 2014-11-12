@@ -5,7 +5,7 @@ ngPouch
 
 PouchDB supports live ( or "continious") replication where changes are propogated between the two databases as the changes occur.
 However, in the event of going offline, something will need to restart the replication process.  The
-[PouchDB guides on replication](http://pouchdb.com/)
+[PouchDB guides on replication](http://pouchdb.com/guides/replication.html)
 discuss the mechanics of catching the 'error' and retrying replication, and even demonstrate the sophisticated "exponential backoff"
 technique.
 
