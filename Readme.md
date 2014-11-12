@@ -4,7 +4,8 @@ ngPouch
 [PouchDB](http://pouchdb.com/) AngularJS adapter to monitor and manage replication status and 3-way data binding
 
 PouchDB supports live ( or "continious") replication where changes are propogated between the two databases as the changes occur.
-However, in the event of going offline, something will need to restart the replication process.  The [PouchDB guides on replication]([PouchDB](http://pouchdb.com/)
+However, in the event of going offline, something will need to restart the replication process.  The
+[PouchDB guides on replication](http://pouchdb.com/)
 discuss the mechanics of catching the 'error' and retrying replication, and even demonstrate the sophisticated "exponential backoff"
 technique.
 
@@ -12,7 +13,7 @@ Geoff Cox wrote a plugin [pouchdb-persist](https://github.com/redgeoff/pouchdb-p
 
 This component (ngPouch) provides a similar approach to maintaining fault-tolerant replication, but also publishes
  replication details to Angular's scope.  For example, it tracks (and publishes to the scope) how many un-replicated
- changes have occured locally, the connection status and connection attempts, when data is being sent and received.
+ changes have occured locally, the connection status and connection attempts, as well as when data is being sent and received.
 
 ngPouch also provides mechanisms for 3-way data binding.  Its not exactly 3-way realtime binding (for good reason).  We
 want to be smart about the commits to our database and not create un-necessary revisions.  For example, we don't want to
