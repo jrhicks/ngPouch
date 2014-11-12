@@ -1,7 +1,7 @@
 ngPouch
 =======
 
-Angular service to persist remote connection settings and maintain continuous replication
+PouchDB AngularJS adapter to monitor and manage replication status and 3-way data binding
 
 Install
 ------------
@@ -11,7 +11,8 @@ Install
 View Demo
 -------------
 
-* http://screencast.com/t/9FVbsSDs
+![Youtube Demo](http://img.youtube.com/vi/k-6SD2b0KOA/0.jpg)](http://www.youtube.com/watch?v=k-6SD2b0KOA)
+
 
 Run Demo
 ---------------

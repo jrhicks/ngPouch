@@ -9,9 +9,10 @@ angular.module('app.pouch_conflict', ['ngPouch'])
       all: function() {
         var x = function(doc) {
           if(doc._conflicts) {
-            emit(doc._conflicts, null);
+            emit(doc._id, null);
           }
         }
+        return ngPouch.db.query(x, {include_docs: true, conflicts: true});
 
         return ngPouch.db.query(x).then(
           function(res) {
