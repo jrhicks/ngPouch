@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ngPouch', ['angularLocalStorage','mdo-angular-cryptography'])
-  .service('ngPouch', function($timeout, storage) {
+  .service('ngPouch', function($timeout, storage,$crypto) {
 
     var service =  {
       // Databases
