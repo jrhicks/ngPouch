@@ -368,7 +368,7 @@ angular.module('ngPouch', ['angularLocalStorage','mdo-angular-cryptography'])
         var self = this;
         for (var key in obj){
           var val = obj[key];
-          if(isKeyInEncryptionList(key,val)){
+          if(self.isKeyInEncryptionList(key,val)){
 
               //Recusive call if object
             if(typeof val === 'object'){
