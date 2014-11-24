@@ -386,6 +386,9 @@ angular.module('ngPouch', ['angularLocalStorage','mdo-angular-cryptography'])
               obj[key] = encptDecpytFunction.call(this,val);
             }
           }
+          if (typeof val === 'function'){
+            delete obj[key];
+          }
         }
         return obj;
       },
