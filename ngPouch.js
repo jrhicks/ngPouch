@@ -400,10 +400,10 @@ angular.module('ngPouch', ['angularLocalStorage','mdo-angular-cryptography'])
         }else {
           self.db.filter({
             incoming:function(doc){
-              self.recursiveObjectEncyptDecypt(doc,$crypto.encrypt)
+              return self.recursiveObjectEncyptDecypt(doc,$crypto.encrypt)
             },
             outgoing: function(doc){
-              self.recursiveObjectEncyptDecypt(doc,$crypto.decrypt)
+              return self.recursiveObjectEncyptDecypt(doc,$crypto.decrypt)
             }
           })
         }
