@@ -352,7 +352,7 @@ angular.module('ngPouch', ['angularLocalStorage','mdo-angular-cryptography'])
             'design_doc'
         ];
           //Exclude by you
-        if(exclusiveDisable.contains(key)){
+        if(exclusiveDisable.indexOf(key)){
           return false;
           //Internal field
         }else if(key.substr(0,1) === '_') {
