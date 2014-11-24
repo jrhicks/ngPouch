@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ngPouch', ['angularLocalStorage'])
+angular.module('ngPouch', ['angularLocalStorage','mdo-angular-cryptography'])
   .service('ngPouch', function($timeout, storage) {
 
     var service =  {
@@ -62,6 +62,8 @@ angular.module('ngPouch', ['angularLocalStorage'])
         // Start Session
         this.trackChanges();
         this.initRobustSync(1000);
+
+        this.initEncryption();
 
         // Had to use these functions somewhere
         // to get WebStorm to turn green.
@@ -339,6 +341,73 @@ angular.module('ngPouch', ['angularLocalStorage'])
         }
       },
 
+      /**
+       * Check the key and value, if value is to encrypt returns true
+       * @param key The key in the doc
+       * @param value The value in the doc
+       * @returns {boolean} true if key is to encrypt
+       */
+      isKeyInEncryptionList: function(key,value){
+        var exclusiveDisable = [
+            'design_doc'
+        ];
+          //Exclude by you
+        if(exclusiveDisable.contains(key)){
+          return false;
+          //Internal field
+        }else if(key.substr(0,1) === '_') {
+          return false;
+        }else if (typeof value === 'function' ){
+          return false;
+        }else{
+          return true;
+        }
+      },
+
+      recursiveObjectEncyptDecypt: function (obj, encptDecpytFunction){
+        var self = this;
+        for (var key in obj){
+          var val = obj[key];
+          if(isKeyInEncryptionList(key,val)){
+
+              //Recusive call if object
+            if(typeof val === 'object'){
+              obj[key] = self.recursiveObjectEncyptDecypt.call(self,val,encptDecpytFunction);
+
+              //Call for each element of an array
+            }else if (typeof val === 'array'){
+              for (var i in val){
+                var arrVal = val[i]
+                val[i] = self.recursiveObjectEncyptDecypt.call(self,val[i],encptDecpytFunction);
+              }
+
+              //If normal val
+            }else {
+              obj[key] = encptDecpytFunction.call(this,val);
+            }
+          }
+        }
+        return obj;
+      },
+      /**
+       *
+       */
+      initEncryption: function () {
+        var self = this;
+        var recursiveObjectEncyptDecypt = self.recursiveObjectEncyptDecypt
+        if(!self.db.filter){
+          throw new Error("Please use the pouchdb.filter plugin, see bower.json")
+        }else {
+          self.db.filter({
+            incoming:function(doc){
+              self.recursiveObjectEncyptDecypt(doc,$crypto.encrypt)
+            },
+            outgoing: function(doc){
+              self.recursiveObjectEncyptDecypt(doc,$crypto.decrypt)
+            }
+          })
+        }
+      },
       trackChanges: function() {
         var self = this;
         if (typeof self.changes === "object") {
