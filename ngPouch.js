@@ -153,7 +153,6 @@ angular.module('ngPouch', ['angularLocalStorage','mdo-angular-cryptography'])
         self.session.publishInProgress = false;
 
         var runFn = function(info) {
-          console.log(info);
           if ( self.session.publishInProgress === false) {
             self.session.publishInProgress = true;
             f().then(function() {
