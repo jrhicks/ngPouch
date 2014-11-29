@@ -155,7 +155,7 @@ angular.module('ngPouch', ['angularLocalStorage','mdo-angular-cryptography'])
         var runFn = function(info) {
           if ( self.session.publishInProgress === false) {
             self.session.publishInProgress = true;
-            f().then(function() {
+            f().finally(function() {
               $timeout(function() {
                 self.session.publishInProgress=false;
               }, 0, self.invokeApply);
