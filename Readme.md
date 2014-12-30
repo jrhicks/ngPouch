@@ -1,6 +1,8 @@
 ngPouch
 =======
 
+This is a fork from https://github.com/jrhicks/ngPouch
+
 [PouchDB](http://pouchdb.com/) AngularJS adapter to monitor and manage replication status and 3-way data binding
 
 PouchDB supports live ( or "continious") replication where changes are propogated between the two databases as the changes occur.
