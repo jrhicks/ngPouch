@@ -1,0 +1,38 @@
+{
+  "name": "ng-pouch",
+  "version": "0.0.1",
+  "authors": [
+    "jrhicks <jrhicks@gmail.com>"
+  ],
+  "description": "Angular service to persist remote connection settings and maintain continuous replication",
+  "main": "ngPouch.js",
+  "keywords": [
+    "pouchdb",
+    "angularjs"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/jrhicks/ngPouch",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    ".idea",
+    "npm-debug.log"
+  ],
+  "dependencies": {
+    "pouchdb": "~3.0.6",
+    "ngStorage": "~0.1.8",
+    "angular-uuid-service": "~0.0.1"
+  },
+  "_release": "0.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.1",
+    "commit": "129bca02c717f21c406eab15a18d24ce4abc47d8"
+  },
+  "_source": "https://github.com/jfspencer/ngPouch.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/jfspencer/ngPouch.git"
+}
