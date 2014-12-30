@@ -1,3 +1,4 @@
+(function () { //start closure
 'use strict';
 
 angular.module('ngPouch', ['angularLocalStorage'])
@@ -489,4 +490,6 @@ angular.module('ngPouch', ['angularLocalStorage'])
     service.init();
     return service
   });
+  
+})(); //end closure
 
