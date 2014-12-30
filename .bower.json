@@ -1,6 +1,6 @@
 {
-  "name": "ng-pouch",
-  "version": "0.0.1",
+  "name": "jn-pouch",
+  "version": "0.0.2",
   "authors": [
     "jrhicks <jrhicks@gmail.com>"
   ],
@@ -22,15 +22,15 @@
     "npm-debug.log"
   ],
   "dependencies": {
-    "pouchdb": "~3.0.6",
-    "ngStorage": "~0.1.8",
+    "pouchdb": "~3.2.0",
+    "angularLocalStorage": "~0.2.0",
     "angular-uuid-service": "~0.0.1"
   },
-  "_release": "0.0.1",
+  "_release": "0.0.2",
   "_resolution": {
     "type": "version",
-    "tag": "0.0.1",
-    "commit": "129bca02c717f21c406eab15a18d24ce4abc47d8"
+    "tag": "0.0.2",
+    "commit": "b6f5951ff220d0bbd51cebd9d7fb61375e171dcc"
   },
   "_source": "https://github.com/jfspencer/ngPouch.git",
   "_target": "*",
