@@ -22,8 +22,8 @@
     "npm-debug.log"
   ],
   "dependencies": {
-    "pouchdb": "~3.0.6",
-    "ngStorage": "~0.1.8",
+    "pouchdb": "~3.2.0",
+    "angularLocalStorage": "~0.2.0",
     "angular-uuid-service": "~0.0.1"
   }
 }
