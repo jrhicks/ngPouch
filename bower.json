@@ -1,6 +1,6 @@
 {
   "name": "ng-pouch",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "authors": [
     "jrhicks <jrhicks@gmail.com>"
   ],
@@ -24,6 +24,10 @@
   "dependencies": {
     "pouchdb": "~3.0.6",
     "ngStorage": "~0.1.8",
-    "angular-uuid-service": "~0.0.1"
+    "angular-uuid-service": "~0.0.1",
+    "cryptojslib": "~3.1.2",
+    "angular-cryptography": "~1.0.0",
+    "filter-pouch": "https://github.com/B-Stefan/filter-pouch.git#master",
+    "pouchdb-authentication": "~0.3.6"
   }
 }
