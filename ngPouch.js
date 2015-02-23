@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('ngPouch', ['angularLocalStorage','mdo-angular-cryptography'])
-  .service('ngPouch', function($timeout, storage,$crypto) {
+angular.module('ngPouch', ['angularLocalStorage'])
+  .service('ngPouch', function($timeout, storage) {
 
     var service =  {
       // Databases
@@ -62,8 +62,6 @@ angular.module('ngPouch', ['angularLocalStorage','mdo-angular-cryptography'])
         // Start Session
         this.trackChanges();
         this.initRobustSync(1000);
-
-        this.initEncryption();
 
         // Had to use these functions somewhere
         // to get WebStorm to turn green.
@@ -391,25 +389,7 @@ angular.module('ngPouch', ['angularLocalStorage','mdo-angular-cryptography'])
         }
         return obj;
       },
-      /**
-       *
-       */
-      initEncryption: function () {
-        var self = this;
-        var recursiveObjectEncyptDecypt = self.recursiveObjectEncyptDecypt
-        if(!self.db.filter){
-          throw new Error("Please use the pouchdb.filter plugin, see bower.json")
-        }else {
-          self.db.filter({
-            incoming:function(doc){
-              return self.recursiveObjectEncyptDecypt(doc,$crypto.encrypt)
-            },
-            outgoing: function(doc){
-              return self.recursiveObjectEncyptDecypt(doc,$crypto.decrypt)
-            }
-          })
-        }
-      },
+      
       trackChanges: function() {
         var self = this;
         if (typeof self.changes === "object") {
