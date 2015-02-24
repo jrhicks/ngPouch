@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('ngPouch', ['angularLocalStorage','mdo-angular-cryptography'])
-  .service('ngPouch', function($timeout, storage,$crypto) {
+angular.module('ngPouch', ['ngStorage'])
+  .service('ngPouch', function($timeout, $localStorage) {
 
     var service =  {
       // Databases
@@ -63,8 +63,6 @@ angular.module('ngPouch', ['angularLocalStorage','mdo-angular-cryptography'])
         this.trackChanges();
         this.initRobustSync(1000);
 
-        this.initEncryption();
-
         // Had to use these functions somewhere
         // to get WebStorm to turn green.
         // This is a really silly use of them
@@ -124,18 +122,18 @@ angular.module('ngPouch', ['angularLocalStorage','mdo-angular-cryptography'])
       },
 
       persistStatus: function() {
-        storage.pouchStatus = this.status;
+        $localStorage.pouchStatus = this.status;
       },
 
       loadSettings: function() {
-        if (typeof storage.pouchSettings !== "undefined") {
-          this.settings = storage.pouchSettings;
+        if (typeof $localStorage.pouchSettings !== "undefined") {
+          this.settings = $localStorage.pouchSettings;
         }
       },
 
       loadStatus: function() {
-        if (typeof storage.pouchStatus !== "undefined") {
-          this.status = storage.pouchStatus
+        if (typeof $localStorage.pouchStatus !== "undefined") {
+          this.status = $localStorage.pouchStatus
         }
       },
 
@@ -189,7 +187,7 @@ angular.module('ngPouch', ['angularLocalStorage','mdo-angular-cryptography'])
       saveSettings: function(settings) {
         //this.db.logout();
         this.settings = settings;
-        storage.pouchSettings = this.getSettings();
+        $localStorage.pouchSettings = this.getSettings();
         this.initRobustSync(1000);
       },
 
@@ -245,8 +243,8 @@ angular.module('ngPouch', ['angularLocalStorage','mdo-angular-cryptography'])
       reset: function() {
         var self = this;
         PouchDB.destroy("LocalDB").then( function() {
-          storage.pouchStatus = {};
-          storage.session = {};
+          $localStorage.pouchStatus = {};
+          $localStorage.session = {};
           self.disconnect();
           self.init();
         });
@@ -391,25 +389,7 @@ angular.module('ngPouch', ['angularLocalStorage','mdo-angular-cryptography'])
         }
         return obj;
       },
-      /**
-       *
-       */
-      initEncryption: function () {
-        var self = this;
-        var recursiveObjectEncyptDecypt = self.recursiveObjectEncyptDecypt
-        if(!self.db.filter){
-          throw new Error("Please use the pouchdb.filter plugin, see bower.json")
-        }else {
-          self.db.filter({
-            incoming:function(doc){
-              return self.recursiveObjectEncyptDecypt(doc,$crypto.encrypt)
-            },
-            outgoing: function(doc){
-              return self.recursiveObjectEncyptDecypt(doc,$crypto.decrypt)
-            }
-          })
-        }
-      },
+      
       trackChanges: function() {
         var self = this;
         if (typeof self.changes === "object") {
@@ -525,7 +505,7 @@ angular.module('ngPouch', ['angularLocalStorage','mdo-angular-cryptography'])
 
       logoff: function() {
         this.settings['stayConnected']=false;
-        storage.pouchSettings = this.getSettings();
+        $localStorage.pouchSettings = this.getSettings();
 
         // Throwing the kitchen sync to break the live sync
         this.cancelProgressiveRetry();
